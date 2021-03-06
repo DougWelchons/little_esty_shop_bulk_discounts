@@ -4,15 +4,15 @@ RSpec.describe "Merchant discount show page" do
   before :each do
     @merchant = Merchant.create!(name: "Merchant", status: 0)
 
-    @discount1 = @merchant.discounts.create!(percent: 10, threshold: 10)
-    @discount2 = @merchant.discounts.create!(percent: 20, threshold: 20)
-    @discount3 = @merchant.discounts.create!(percent: 30, threshold: 30)
-    @discount4 = @merchant.discounts.create!(percent: 40, threshold: 40)
+    @discount1 = @merchant.discounts.create!(percent: 0.10, threshold: 10)
+    @discount2 = @merchant.discounts.create!(percent: 0.20, threshold: 20)
+    @discount3 = @merchant.discounts.create!(percent: 0.30, threshold: 30)
+    @discount4 = @merchant.discounts.create!(percent: 0.40, threshold: 40)
   end
 
   describe "when I visit a merchants dashboard it" do
     it "Has a link to view all my discounts" do
-      visit "merchants/#{@merchant.id}"
+      visit "merchant/#{@merchant.id}/dashboard"
 
       within(".discounts") do
         expect(page).to have_link("Discounts")
@@ -20,7 +20,7 @@ RSpec.describe "Merchant discount show page" do
     end
 
     it "redirects to the discount show page ehwn the link is clicked" do
-      visit "merchants/#{@merchant.id}"
+      visit "merchant/#{@merchant.id}/dashboard"
 
       click_link("Discounts")
 
@@ -30,7 +30,7 @@ RSpec.describe "Merchant discount show page" do
 
   describe "when I visit the Merchants discounts index page it" do
     it "shows all of my discounts, including percent and threshold" do
-      visit "merchants/#{@merchant.id}/discounts"
+      visit "merchant/#{@merchant.id}/discounts"
 
       within(".discount_list") do
         within("#discount_#{@discount1.id}") do
