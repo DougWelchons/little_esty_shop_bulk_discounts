@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin Invoices Index Page' do
+describe 'Admin Invoices Show Page' do
   before :each do
     @m1 = Merchant.create!(name: 'Merchant 1')
 
@@ -54,7 +54,7 @@ describe 'Admin Invoices Index Page' do
   end
 
   it 'should display the total revenue the invoice will generate' do
-    expect(page).to have_content("Total Revenue: $#{@i1.total_revenue}")
+    expect(page).to have_content("Total Revenue: $30.00")
 
     expect(page).to_not have_content(@i2.total_revenue)
   end
