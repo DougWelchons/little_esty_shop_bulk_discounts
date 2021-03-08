@@ -134,5 +134,35 @@ RSpec.describe 'invoices show' do
 
       expect(page).to have_content("Total Revenue: $251.00")
     end
+
+    it "shows a link to each applied discount" do
+      visit "/merchant/#{@merchant1.id}/invoices/#{@invoice1.id}"
+
+      within(".table") do
+        within("#the-status-#{@ii1.id}") do
+          expect(page).to have_link("Discount ID##{@discount1.id}")
+        end
+
+        within("#the-status-#{@ii4.id}") do
+          expect(page).to have_link("Discount ID##{@discount4.id}")
+        end
+
+        within("#the-status-#{@ii6.id}") do
+          expect(page).to have_content("No Discount Applied")
+        end
+      end
+    end
+
+    it "redirects me to the discount show page when the link is clicked" do
+      visit "/merchant/#{@merchant1.id}/invoices/#{@invoice1.id}"
+
+      within(".table") do
+        within("#the-status-#{@ii1.id}") do
+          click_link("Discount ID##{@discount1.id}")
+        end
+      end
+
+      expect(current_path).to eq("/merchant/#{@merchant1.id}/discounts/#{@discount1.id}")
+    end
   end
 end
