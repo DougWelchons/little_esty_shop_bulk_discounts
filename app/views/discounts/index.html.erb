@@ -1,0 +1,19 @@
+<h1><%=@merchant.name%> discount list</h1>
+<table class="discount_list">
+  <thead>
+    <tr>
+      <th scope="col">Discount ID</th>
+      <th scope="col">Percentage</th>
+      <th scope="col">Threshold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @merchant.discounts.each do |discount| %>
+      <tr id="discount_<%= discount.id %>">
+        <td>ID#<%= discount.id %></td>
+        <td><%= "#{(discount.percent * 100).to_i}%" %></td>
+        <td><%= discount.threshold %></td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>

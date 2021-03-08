@@ -14,7 +14,7 @@ RSpec.describe "Merchant discount show page" do
     it "Has a link to view all my discounts" do
       visit "merchant/#{@merchant.id}/dashboard"
 
-      within(".discounts") do
+      within(".navbar-nav") do
         expect(page).to have_link("Discounts")
       end
     end
@@ -24,7 +24,7 @@ RSpec.describe "Merchant discount show page" do
 
       click_link("Discounts")
 
-      expect(current_path).to eq("merchants/#{@merchant.id}/discounts")
+      expect(current_path).to eq("/merchant/#{@merchant.id}/discounts")
     end
   end
 
@@ -34,27 +34,27 @@ RSpec.describe "Merchant discount show page" do
 
       within(".discount_list") do
         within("#discount_#{@discount1.id}") do
-          expect(page).to have_conntent(@discount1.id)
-          expect(page).to have_conntent(@discount1.percent)
-          expect(page).to have_conntent(@discount1.threshold)
+          expect(page).to have_content("ID##{@discount1.id}")
+          expect(page).to have_content("10%")
+          expect(page).to have_content(@discount1.threshold)
         end
 
         within("#discount_#{@discount2.id}") do
-          expect(page).to have_conntent(@discount2.id)
-          expect(page).to have_conntent(@discount2.percent)
-          expect(page).to have_conntent(@discount2.threshold)
+          expect(page).to have_content("ID##{@discount2.id}")
+          expect(page).to have_content("20%")
+          expect(page).to have_content(@discount2.threshold)
         end
 
         within("#discount_#{@discount3.id}") do
-          expect(page).to have_conntent(@discount3.id)
-          expect(page).to have_conntent(@discount3.percent)
-          expect(page).to have_conntent(@discount3.threshold)
+          expect(page).to have_content("ID##{@discount3.id}")
+          expect(page).to have_content("30%")
+          expect(page).to have_content(@discount3.threshold)
         end
 
         within("#discount_#{@discount4.id}") do
-          expect(page).to have_conntent(@discount4.id)
-          expect(page).to have_conntent(@discount4.percent)
-          expect(page).to have_conntent(@discount4.threshold)
+          expect(page).to have_content("ID##{@discount4.id}")
+          expect(page).to have_content("40%")
+          expect(page).to have_content(@discount4.threshold)
         end
       end
     end
