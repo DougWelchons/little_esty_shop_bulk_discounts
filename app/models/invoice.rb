@@ -11,6 +11,13 @@ class Invoice < ApplicationRecord
   enum status: [:cancelled, :in_progress, :complete]
 
   def total_revenue
-    invoice_items.sum("unit_price * quantity")
+    invoice_items.sum do |ii|
+      ii.revenue
+    end
   end
 end
+
+# invoice_items.left_joins(:discounts).sum("invoice_items.unit_price * invoice_items.quantity * (1 - discounts.percent)")
+#
+# invoice_items.left_joins(:discounts).select('invoice_items.*, discounts.*').sum("invoice_items.unit_price * invoice_items.quantity * (1 - discounts.percent)")
+# # invoice_items.left_joins(:discounts).sum("invoice_items.unit_price * invoice_items.quantity * (1 - discounts.percent)")
