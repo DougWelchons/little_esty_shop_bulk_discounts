@@ -17,3 +17,12 @@
     <%end%>
   </tbody>
 </table>
+
+<div class="holidays">
+  <h4>Upcoming Holidays</h4>
+  <ul>
+    <% @next_three.each do |holiday| %>
+      <li><%= "#{holiday[:localName]}, #{holiday[:date]}" %></li>
+    <% end %>
+  </ul>
+</div>
