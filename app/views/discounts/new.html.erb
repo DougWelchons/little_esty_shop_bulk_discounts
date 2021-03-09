@@ -1,2 +1,2 @@
-<h1>new discount for <%= @merchant.name %></h1>
-<%= render partial: "discounts_form", locals: {url: merchant_discounts_path(@merchant), method: :post, percent: "", threshold: "", submit: :Create}%>
+<h1>New Discount</h1>
+<%= render partial: "discounts_form", locals: {url: merchant_discounts_path(@merchant), method: :post, percent: nil, threshold: nil, submit: :Create}%>

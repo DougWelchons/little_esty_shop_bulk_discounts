@@ -13,15 +13,21 @@ class DiscountsController < ApplicationController
   end
 
   def new
+    @discount = Discount.new
     @merchant = Merchant.find(params[:merchant_id])
   end
 
   def create
     @discount = Discount.new(discount_params)
-    @discount.percent = (@discount.percent.to_f / 100)
-    @discount.save
-
-    redirect_to(merchant_discounts_path(params[:merchant_id]))
+    @discount.percent = (@discount.percent.to_f / 100) if @discount.percent
+    if @discount.save
+      redirect_to(merchant_discounts_path(params[:merchant_id]))
+    else
+      flash.now[:error_percent] = "Percent value required." if @discount.percent.nil?
+      flash.now[:error_threshold] = "Threshold required." if @discount.threshold.nil?
+      @merchant = Merchant.find(params[:merchant_id])
+      render :new
+    end
   end
 
   def destroy
@@ -46,5 +52,9 @@ class DiscountsController < ApplicationController
   private
   def discount_params
     params.permit(:percent, :threshold, :merchant_id)
+  end
+
+  def find_discount
+
   end
 end
