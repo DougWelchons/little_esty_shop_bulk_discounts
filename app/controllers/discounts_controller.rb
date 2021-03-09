@@ -31,6 +31,18 @@ class DiscountsController < ApplicationController
     redirect_to(merchant_discounts_path(params[:merchant_id]))
   end
 
+  def edit
+    @discount = Discount.find(params[:id])
+  end
+
+  def update
+    @discount = Discount.find(params[:id])
+    @discount.update(discount_params)
+    @discount.update(percent: (@discount.percent.to_f / 100))
+
+    redirect_to(merchant_discount_path(@discount.merchant.id, @discount.id))
+  end
+
   private
   def discount_params
     params.permit(:percent, :threshold, :merchant_id)
