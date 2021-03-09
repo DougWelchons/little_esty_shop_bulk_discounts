@@ -1,4 +1,7 @@
-<h1><%=@merchant.name%> discount list</h1>
+<div class="header">
+  <h1><%=@merchant.name%> discount list</h1><br>
+  <%= button_to "Create Discount", new_merchant_discount_path(@merchant.id), method: :get %>
+</div>
 <table class="discount_list">
   <thead>
     <tr>
