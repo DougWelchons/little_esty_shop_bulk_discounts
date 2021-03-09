@@ -24,6 +24,8 @@ class Merchant < ApplicationRecord
     item_ids.map do |id|
       Item.find(id)
     end
+
+    # item_ids = InvoiceItem.joins(:item).where("invoice_items.status = 0 OR invoice_items.status = 1").order(:created_at).select('items.name as name, items.created_at as created_at, invoice_items.invoice_id as invoice_id')
   end
 
   def top_5_items

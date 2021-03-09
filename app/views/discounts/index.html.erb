@@ -1,4 +1,7 @@
-<h1><%=@merchant.name%> discount list</h1>
+<div class="header">
+  <h1><%=@merchant.name%> discount list</h1><br>
+  <%= button_to "Create Discount", new_merchant_discount_path(@merchant.id), method: :get %>
+</div>
 <table class="discount_list">
   <thead>
     <tr>
@@ -17,3 +20,12 @@
     <%end%>
   </tbody>
 </table>
+
+<div class="holidays">
+  <h4>Upcoming Holidays</h4>
+  <ul>
+    <% @next_three.each do |holiday| %>
+      <li><%= "#{holiday[:localName]}, #{holiday[:date]}" %></li>
+    <% end %>
+  </ul>
+</div>
