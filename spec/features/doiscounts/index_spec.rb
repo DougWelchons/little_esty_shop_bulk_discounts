@@ -66,6 +66,16 @@ RSpec.describe "Merchant discount index page" do
       end
     end
 
+    it "takes me to the discount show page when the link is clicked" do
+      VCR.use_cassette('nds_public_holidays') do
+        visit "/merchant/#{@merchant.id}/discounts"
+
+        click_link("ID##{@discount1.id}")
+
+        expect(current_path).to eq(merchant_discount_path(@merchant.id, @discount1.id))
+      end
+    end
+
     it "shows a headder for upcoming holidays" do
       VCR.use_cassette('nds_public_holidays') do
         visit "merchant/#{@merchant.id}/discounts"
