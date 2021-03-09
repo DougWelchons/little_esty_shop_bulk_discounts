@@ -8,14 +8,16 @@
       <th scope="col">Discount ID</th>
       <th scope="col">Percentage</th>
       <th scope="col">Threshold</th>
+      <th scope="col">Remove Discount</th>
     </tr>
   </thead>
   <tbody>
     <% @merchant.discounts.each do |discount| %>
       <tr id="discount_<%= discount.id %>">
-        <td>ID#<%= discount.id %></td>
+        <td><%= link_to "ID##{discount.id}", merchant_discount_path(@merchant.id, discount.id) %></td>
         <td><%= "#{(discount.percent * 100).to_i}%" %></td>
         <td><%= discount.threshold %></td>
+        <td><%= button_to "Delete Discount", merchant_discount_path(@merchant.id, discount.id), method: :delete %></td>
       </tr>
     <%end%>
   </tbody>

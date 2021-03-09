@@ -1,0 +1,9 @@
+<div class="form" style="padding: 25px">
+  <%= form_with url: url, method: method, local: true do |form| %>
+    <%= form.label "Percent Discount" %>
+    <%= form.number_field :percent, value: percent %><br>
+    <%= form.label "Item Threshold" %>
+    <%= form.number_field :threshold, value: threshold %><br>
+    <%= form.submit submit %>
+  <% end %>
+</div>

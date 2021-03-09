@@ -24,7 +24,7 @@ RSpec.describe "Merchant discount index page" do
 
     it "redirects to the discount show page when the link is clicked" do
       VCR.use_cassette('nds_public_holidays') do
-        visit "merchant/#{@merchant.id}/dashboard"
+        visit "/merchant/#{@merchant.id}/dashboard"
 
         click_link("Discounts")
 
@@ -36,7 +36,7 @@ RSpec.describe "Merchant discount index page" do
   describe "when I visit the Merchants discounts index page it" do
     it "shows all of my discounts, including percent and threshold" do
       VCR.use_cassette('nds_public_holidays') do
-        visit "merchant/#{@merchant.id}/discounts"
+        visit "/merchant/#{@merchant.id}/discounts"
 
         within(".discount_list") do
           within("#discount_#{@discount1.id}") do
@@ -63,6 +63,16 @@ RSpec.describe "Merchant discount index page" do
             expect(page).to have_content(@discount4.threshold)
           end
         end
+      end
+    end
+
+    it "takes me to the discount show page when the link is clicked" do
+      VCR.use_cassette('nds_public_holidays') do
+        visit "/merchant/#{@merchant.id}/discounts"
+
+        click_link("ID##{@discount1.id}")
+
+        expect(current_path).to eq(merchant_discount_path(@merchant.id, @discount1.id))
       end
     end
 

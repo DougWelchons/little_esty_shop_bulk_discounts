@@ -22,7 +22,7 @@ RSpec.describe "discount new page" do
         fill_in :threshold, with: 10
         click_button(:Create)
 
-        expect(current_path).to eq("merchant/#{@merchant.id}/discounts")
+        expect(current_path).to eq("/merchant/#{@merchant.id}/discounts")
       end
     end
   end
