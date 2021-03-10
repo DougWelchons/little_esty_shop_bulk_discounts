@@ -21,8 +21,10 @@
         <%= f.submit 'Update Invoice' %>
     </section>
       <% end %>
-  <p>Created on: <%= @invoice.created_at.strftime("%A, %B %d, %Y") %>
-  <p>Total Revenue: <%= number_to_currency(@invoice.total_revenue) %>
+  <p>Created on: <%= @invoice.created_at.strftime("%A, %B %d, %Y") %></p>
+  <p>Revenue: <%= number_to_currency(@invoice.revenue_before_discounts) %></p>
+  <p>Savings: <%= number_to_currency(@invoice.savings_amount) %></p>
+  <p>Total Revenue: <%= number_to_currency(@invoice.total_revenue) %></p>
 
   <h4>Customer:</h4>
     <%= @invoice.customer.first_name %> <%= @invoice.customer.last_name %><br>
@@ -37,18 +39,28 @@
         <th class="th1">Item Name</th>
         <th class="th1">Quantity</th>
         <th class="th1">Unit Price</th>
+        <th class="th1">Discount</th>
         <th class="th1">Status</th>
       </tr>
     </thead>
 
     <tbody>
       <% @invoice.invoice_items.each do |i| %>
-        <tr class="tr">
-          <td style="text-align:center"><%= i.item.name %></td>
-          <td style="text-align:center"><%= i.quantity %></td>
-          <td style="text-align:center">$<%= i.unit_price %></td>
-          <td style="text-align:center"><%= i.status%></td><br/>
-        </tr>
+        <section id="the-status-<%= i.id %>">
+          <tr class="tr">
+            <td style="text-align:center"><%= i.item.name %></td>
+            <td style="text-align:center"><%= i.quantity %></td>
+            <td style="text-align:center">$<%= i.unit_price %></td>
+            <td style="text-align:center">
+              <% if i.valid_discount %>
+                <%= "#{i.valid_discount.percent}%" %>
+              <% else %>
+                No Discount Applied
+              <% end %>
+            </td>
+            <td style="text-align:center"><%= i.status%></td><br/>
+          </tr>
+        </section>
       <% end %>
     </tbody>
   </table>
