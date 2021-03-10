@@ -17,7 +17,13 @@
         <td><%= link_to "ID##{discount.id}", merchant_discount_path(@merchant.id, discount.id) %></td>
         <td><%= "#{discount.percent}%" %></td>
         <td><%= discount.threshold %></td>
-        <td><%= button_to "Delete Discount", merchant_discount_path(@merchant.id, discount.id), method: :delete %></td>
+        <td>
+          <% if discount.pending_invoice_items? %>
+            This discount cannot be deleted. there are pending invoices.
+          <% else %>
+            <%= button_to "Delete Discount", merchant_discount_path(@merchant.id, discount.id), method: :delete %>
+          <% end%>
+        </td>
       </tr>
     <%end%>
   </tbody>
