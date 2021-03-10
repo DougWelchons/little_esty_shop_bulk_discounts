@@ -23,7 +23,7 @@
       <% end %>
   <p>Created on: <%= @invoice.created_at.strftime("%A, %B %d, %Y") %></p>
   <p>Revenue: <%= number_to_currency(@invoice.revenue_before_discounts) %></p>
-  <p>Savings: <%= number_to_currency(@invoice.savings_amount) %></p>
+  <p>Customer Savings: <%= number_to_currency(@invoice.savings_amount) %></p>
   <p>Total Revenue: <%= number_to_currency(@invoice.total_revenue) %></p>
 
   <h4>Customer:</h4>

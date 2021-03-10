@@ -41,7 +41,7 @@ describe 'Admin Invoices Show Page' do
     it "shows the savings to be applied" do
       visit "admin/invoices/#{@invoice1.id}"
 
-      expect(page).to have_content("Savings: $105.00")
+      expect(page).to have_content("Customer Savings: $105.00")
     end
 
     it "shows the total revinue including discounts" do
