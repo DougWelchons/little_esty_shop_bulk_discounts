@@ -22,8 +22,7 @@ class DiscountsController < ApplicationController
     if @discount.save
       redirect_to(merchant_discounts_path(params[:merchant_id]))
     else
-      flash.now[:error_percent] = "Percent value required." if @discount.percent.nil?
-      flash.now[:error_threshold] = "Threshold required." if @discount.threshold.nil?
+      flash.now[:error] = @discount.errors.full_messages
       @merchant = Merchant.find(params[:merchant_id])
       render :new
     end
@@ -42,9 +41,12 @@ class DiscountsController < ApplicationController
 
   def update
     @discount = Discount.find(params[:id])
-    @discount.update(discount_params)
-
-    redirect_to(merchant_discount_path(@discount.merchant.id, @discount.id))
+    if @discount.update(discount_params)
+      redirect_to(merchant_discount_path(@discount.merchant.id, @discount.id))
+    else
+      flash.now[:error] = @discount.errors.full_messages
+      render :edit
+    end
   end
 
   private

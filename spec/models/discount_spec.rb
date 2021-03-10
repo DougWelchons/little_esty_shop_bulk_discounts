@@ -29,9 +29,17 @@ RSpec.describe Discount, type: :model do
     it {should have_many(:invoice_items).through(:items)}
   end
 
+  describe "validations" do
+    it {should validate_presence_of :threshold}
+    it {should validate_presence_of :percent}
+    it {should validate_numericality_of(:threshold).is_greater_than_or_equal_to(1)}
+    it {should validate_numericality_of(:percent).is_greater_than(0)}
+    it {should validate_numericality_of(:percent).is_less_than(100)}
+  end
+
   describe "instance methods" do
     describe "#pending_invoice_items?" do
-      it "returns true if any pending invoices useing this discount are pending" do
+      it "returns true if any invoices useing this discount are pending" do
         expect(@discount1.pending_invoice_items?).to eq(true)
       end
 
