@@ -15,7 +15,7 @@
     <% @merchant.discounts.each do |discount| %>
       <tr id="discount_<%= discount.id %>">
         <td><%= link_to "ID##{discount.id}", merchant_discount_path(@merchant.id, discount.id) %></td>
-        <td><%= "#{(discount.percent * 100).to_i}%" %></td>
+        <td><%= "#{discount.percent}%" %></td>
         <td><%= discount.threshold %></td>
         <td><%= button_to "Delete Discount", merchant_discount_path(@merchant.id, discount.id), method: :delete %></td>
       </tr>

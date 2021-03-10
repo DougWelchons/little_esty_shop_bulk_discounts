@@ -4,7 +4,7 @@ RSpec.describe "Discount edit page" do
   before :each do
     @merchant = Merchant.create!(name: "Merchant", status: 0)
 
-    @discount = @merchant.discounts.create!(percent: 0.20, threshold: 10)
+    @discount = @merchant.discounts.create!(percent: 20, threshold: 10)
   end
 
   describe "when i visit the discount edit page it" do
@@ -25,7 +25,7 @@ RSpec.describe "Discount edit page" do
       expect(current_path).to eq(merchant_discount_path(@merchant.id, @discount.id))
 
       expect(page).to have_content("Discount ID##{@discount.id}")
-      expect(page).to have_content("Percent: 25.0%")
+      expect(page).to have_content("Percent: 25%")
       expect(page).to have_content("Threshold: #{@discount.threshold}")
     end
   end

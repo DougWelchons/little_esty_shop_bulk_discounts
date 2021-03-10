@@ -12,11 +12,11 @@ RSpec.describe 'invoices show' do
       @item5 = Item.create!(name: "Scrunchie", description: "This holds up your hair but is bigger", unit_price: 3, merchant_id: @merchant1.id)
       @item6 = Item.create!(name: "Butterfly Clip", description: "This holds up your hair but in a clip", unit_price: 5, merchant_id: @merchant1.id)
 
-      @discount0 = @merchant1.discounts.create!(percent: 0.20, threshold: 40)
-      @discount1 = @merchant1.discounts.create!(percent: 0.10, threshold: 10)
-      @discount2 = @merchant1.discounts.create!(percent: 0.20, threshold: 20)
-      @discount3 = @merchant1.discounts.create!(percent: 0.30, threshold: 30)
-      @discount4 = @merchant1.discounts.create!(percent: 0.40, threshold: 40)
+      @discount0 = @merchant1.discounts.create!(percent: 20, threshold: 40)
+      @discount1 = @merchant1.discounts.create!(percent: 10, threshold: 10)
+      @discount2 = @merchant1.discounts.create!(percent: 20, threshold: 20)
+      @discount3 = @merchant1.discounts.create!(percent: 30, threshold: 30)
+      @discount4 = @merchant1.discounts.create!(percent: 40, threshold: 40)
 
       @customer1 = Customer.create!(first_name: 'Joey', last_name: 'Smith')
 
@@ -61,8 +61,8 @@ RSpec.describe 'invoices show' do
         end
       end
 
-      discount5 = @merchant1.discounts.create!(percent: 0.60, threshold: 40)
-      discount6 = @merchant1.discounts.create!(percent: 0.45, threshold: 40)
+      discount5 = @merchant1.discounts.create!(percent: 60, threshold: 40)
+      discount6 = @merchant1.discounts.create!(percent: 45, threshold: 40)
 
       visit "/merchant/#{@merchant1.id}/invoices/#{@invoice1.id}"
 

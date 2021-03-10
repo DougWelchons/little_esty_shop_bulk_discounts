@@ -20,11 +20,11 @@ RSpec.describe InvoiceItem, type: :model do
 
       @item1 = Item.create!(name: "Shampoo", description: "This washes your hair", unit_price: 10, merchant_id: @merchant1.id, status: 1)
 
-      @discount0 = @merchant1.discounts.create!(percent: 0.20, threshold: 30)
-      @discount1 = @merchant1.discounts.create!(percent: 0.10, threshold: 10)
-      @discount2 = @merchant1.discounts.create!(percent: 0.20, threshold: 20)
-      @discount3 = @merchant1.discounts.create!(percent: 0.30, threshold: 30)
-      @discount4 = @merchant1.discounts.create!(percent: 0.40, threshold: 40)
+      @discount0 = @merchant1.discounts.create!(percent: 20, threshold: 30)
+      @discount1 = @merchant1.discounts.create!(percent: 10, threshold: 10)
+      @discount2 = @merchant1.discounts.create!(percent: 20, threshold: 20)
+      @discount3 = @merchant1.discounts.create!(percent: 30, threshold: 30)
+      @discount4 = @merchant1.discounts.create!(percent: 40, threshold: 40)
 
       @customer1 = Customer.create!(first_name: 'Joey', last_name: 'Smith')
 

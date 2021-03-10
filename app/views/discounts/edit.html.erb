@@ -1,2 +1,2 @@
 <h1>Edit discount ID#<%= @discount.id %></h1>
-<%= render partial: "discounts_form", locals: {url: merchant_discount_path(@discount.merchant.id, @discount.id), method: :patch, percent: (@discount.percent * 100).to_i, threshold: @discount.threshold, submit: :Update}%>
+<%= render partial: "discounts_form", locals: {url: merchant_discount_path(@discount.merchant.id, @discount.id), method: :patch, percent: @discount.percent, threshold: @discount.threshold, submit: :Update}%>
