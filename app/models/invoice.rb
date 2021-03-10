@@ -15,6 +15,14 @@ class Invoice < ApplicationRecord
       ii.revenue
     end
   end
+
+  def revenue_before_discounts
+    invoice_items.sum('quantity * unit_price')
+  end
+
+  def savings_amount
+    revenue_before_discounts - total_revenue
+  end
 end
 
 # invoice_items.left_joins(:discounts).sum("invoice_items.unit_price * invoice_items.quantity * (1 - discounts.percent)")
