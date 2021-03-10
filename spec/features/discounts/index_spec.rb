@@ -22,7 +22,7 @@ RSpec.describe "Merchant discount index page" do
       end
     end
 
-    it "redirects to the discount show page when the link is clicked" do
+    it "redirects to the discount index page when the link is clicked" do
       VCR.use_cassette('nds_public_holidays') do
         visit "/merchant/#{@merchant.id}/dashboard"
 

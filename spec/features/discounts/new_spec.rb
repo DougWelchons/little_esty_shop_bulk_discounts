@@ -49,5 +49,18 @@ RSpec.describe "discount new page" do
         expect(page).to have_button(:Create)
       end
     end
+
+    it "will maintain the entered data if the form is permaturely submitted" do
+      VCR.use_cassette('nds_public_holidays') do
+        visit new_merchant_discount_path(@merchant.id)
+
+        fill_in :threshold, with: 10
+        click_button(:Create)
+
+        expect(page).to have_content("Percent value required.")
+        expect(page).to have_field(:threshold, with: 10)
+        expect(page).to have_button(:Create)
+      end
+    end
   end
 end
