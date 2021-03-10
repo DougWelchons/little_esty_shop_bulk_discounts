@@ -23,6 +23,6 @@ class InvoiceItem < ApplicationRecord
 
   def revenue
     return unit_price * quantity if valid_discount.nil?
-    unit_price * quantity * (1 - valid_discount.percent)
+    unit_price * quantity * (1 - (valid_discount.percent.to_f / 100))
   end
 end

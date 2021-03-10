@@ -4,10 +4,10 @@ RSpec.describe "discount delete" do
   before :each do
     @merchant = Merchant.create!(name: "Merchant", status: 0)
 
-    @discount1 = @merchant.discounts.create!(percent: 0.10, threshold: 10)
-    @discount2 = @merchant.discounts.create!(percent: 0.20, threshold: 20)
-    @discount3 = @merchant.discounts.create!(percent: 0.30, threshold: 30)
-    @discount4 = @merchant.discounts.create!(percent: 0.40, threshold: 40)
+    @discount1 = @merchant.discounts.create!(percent: 10, threshold: 10)
+    @discount2 = @merchant.discounts.create!(percent: 20, threshold: 20)
+    @discount3 = @merchant.discounts.create!(percent: 30, threshold: 30)
+    @discount4 = @merchant.discounts.create!(percent: 40, threshold: 40)
   end
 
   describe "When i visit the discount index page it" do

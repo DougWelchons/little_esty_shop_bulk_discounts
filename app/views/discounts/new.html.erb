@@ -1,2 +1,2 @@
 <h1>New Discount</h1>
-<%= render partial: "discounts_form", locals: {url: merchant_discounts_path(@merchant), method: :post, percent: ((@discount.percent * 100).to_i if @discount.percent), threshold: @discount.threshold, submit: :Create}%>
+<%= render partial: "discounts_form", locals: {url: merchant_discounts_path(@merchant), method: :post, percent: @discount.percent, threshold: @discount.threshold, submit: :Create}%>

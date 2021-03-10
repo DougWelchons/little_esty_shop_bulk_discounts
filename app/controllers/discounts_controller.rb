@@ -19,7 +19,6 @@ class DiscountsController < ApplicationController
 
   def create
     @discount = Discount.new(discount_params)
-    @discount.percent = (@discount.percent.to_f / 100) if @discount.percent
     if @discount.save
       redirect_to(merchant_discounts_path(params[:merchant_id]))
     else
@@ -44,7 +43,6 @@ class DiscountsController < ApplicationController
   def update
     @discount = Discount.find(params[:id])
     @discount.update(discount_params)
-    @discount.update(percent: (@discount.percent.to_f / 100))
 
     redirect_to(merchant_discount_path(@discount.merchant.id, @discount.id))
   end
