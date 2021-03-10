@@ -12,7 +12,7 @@ class Admin::MerchantsController < ApplicationController
   def create
     Merchant.create!(name: params[:name],
                      id: find_new_id)
-    flash.notice = 'Merchant Has Been Created!'
+    flash.notice = ['Merchant Has Been Created!']
     redirect_to admin_merchants_path
   end
 
@@ -21,10 +21,10 @@ class Admin::MerchantsController < ApplicationController
 
   def update
     if @merchant.update(merchant_params)
-      flash.notice = "Merchant Has Been Updated!"
+      flash.notice = ["Merchant Has Been Updated!"]
       redirect_to admin_merchant_path(@merchant)
     else
-      flash.notice = "All fields must be completed, get your act together."
+      flash.notice = ["All fields must be completed, get your act together."]
       redirect_to edit_admin_merchant_path(@merchant)
     end
   end

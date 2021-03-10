@@ -17,10 +17,10 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      flash.notice = "Succesfully Updated Item Info!"
+      flash.notice = ["Succesfully Updated Item Info!"]
       redirect_to merchant_item_path(@merchant, @item)
     else
-      flash.notice = "All fields must be completed, get your act together."
+      flash.notice = ["All fields must be completed, get your act together."]
       redirect_to edit_merchant_item_path(@merchant, @item)
     end
   end
